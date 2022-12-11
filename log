@@ -1,0 +1,240 @@
+(1) Current Instruction Some(CpuInstruction { instruction_type: Add(15), cycles_left: 1 }) , Register 1
+(2) Current Instruction None , Register 16
+(3) Current Instruction Some(CpuInstruction { instruction_type: Add(-11), cycles_left: 1 }) , Register 16
+(4) Current Instruction None , Register 5
+(5) Current Instruction Some(CpuInstruction { instruction_type: Add(6), cycles_left: 1 }) , Register 5
+(6) Current Instruction None , Register 11
+(7) Current Instruction Some(CpuInstruction { instruction_type: Add(-3), cycles_left: 1 }) , Register 11
+(8) Current Instruction None , Register 8
+(9) Current Instruction Some(CpuInstruction { instruction_type: Add(5), cycles_left: 1 }) , Register 8
+(10) Current Instruction None , Register 13
+(11) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 13
+(12) Current Instruction None , Register 12
+(13) Current Instruction Some(CpuInstruction { instruction_type: Add(-8), cycles_left: 1 }) , Register 12
+(14) Current Instruction None , Register 4
+(15) Current Instruction Some(CpuInstruction { instruction_type: Add(13), cycles_left: 1 }) , Register 4
+(16) Current Instruction None , Register 17
+(17) Current Instruction Some(CpuInstruction { instruction_type: Add(4), cycles_left: 1 }) , Register 17
+(18) Current Instruction None , Register 21
+(19) Current Instruction None , Register 21
+(20) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 21
+(21) Current Instruction None , Register 20
+(22) Current Instruction Some(CpuInstruction { instruction_type: Add(5), cycles_left: 1 }) , Register 20
+(23) Current Instruction None , Register 25
+(24) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 25
+(25) Current Instruction None , Register 24
+(26) Current Instruction Some(CpuInstruction { instruction_type: Add(5), cycles_left: 1 }) , Register 24
+(27) Current Instruction None , Register 29
+(28) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 29
+(29) Current Instruction None , Register 28
+(30) Current Instruction Some(CpuInstruction { instruction_type: Add(5), cycles_left: 1 }) , Register 28
+(31) Current Instruction None , Register 33
+(32) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 33
+(33) Current Instruction None , Register 32
+(34) Current Instruction Some(CpuInstruction { instruction_type: Add(5), cycles_left: 1 }) , Register 32
+(35) Current Instruction None , Register 37
+(36) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 37
+(37) Current Instruction None , Register 36
+(38) Current Instruction Some(CpuInstruction { instruction_type: Add(-35), cycles_left: 1 }) , Register 36
+(39) Current Instruction None , Register 1
+(40) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 1
+(41) Current Instruction None , Register 2
+(42) Current Instruction Some(CpuInstruction { instruction_type: Add(24), cycles_left: 1 }) , Register 2
+(43) Current Instruction None , Register 26
+(44) Current Instruction Some(CpuInstruction { instruction_type: Add(-19), cycles_left: 1 }) , Register 26
+(45) Current Instruction None , Register 7
+(46) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 7
+(47) Current Instruction None , Register 8
+(48) Current Instruction Some(CpuInstruction { instruction_type: Add(16), cycles_left: 1 }) , Register 8
+(49) Current Instruction None , Register 24
+(50) Current Instruction Some(CpuInstruction { instruction_type: Add(-11), cycles_left: 1 }) , Register 24
+(51) Current Instruction None , Register 13
+(52) Current Instruction None , Register 13
+(53) Current Instruction None , Register 13
+(54) Current Instruction Some(CpuInstruction { instruction_type: Add(21), cycles_left: 1 }) , Register 13
+(55) Current Instruction None , Register 34
+(56) Current Instruction Some(CpuInstruction { instruction_type: Add(-15), cycles_left: 1 }) , Register 34
+(57) Current Instruction None , Register 19
+(58) Current Instruction None , Register 19
+(59) Current Instruction None , Register 19
+(60) Current Instruction Some(CpuInstruction { instruction_type: Add(-3), cycles_left: 1 }) , Register 19
+(61) Current Instruction None , Register 16
+(62) Current Instruction Some(CpuInstruction { instruction_type: Add(9), cycles_left: 1 }) , Register 16
+(63) Current Instruction None , Register 25
+(64) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 25
+(65) Current Instruction None , Register 26
+(66) Current Instruction Some(CpuInstruction { instruction_type: Add(-3), cycles_left: 1 }) , Register 26
+(67) Current Instruction None , Register 23
+(68) Current Instruction Some(CpuInstruction { instruction_type: Add(8), cycles_left: 1 }) , Register 23
+(69) Current Instruction None , Register 31
+(70) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 31
+(71) Current Instruction None , Register 32
+(72) Current Instruction Some(CpuInstruction { instruction_type: Add(5), cycles_left: 1 }) , Register 32
+(73) Current Instruction None , Register 37
+(74) Current Instruction None , Register 37
+(75) Current Instruction None , Register 37
+(76) Current Instruction None , Register 37
+(77) Current Instruction None , Register 37
+(78) Current Instruction None , Register 37
+(79) Current Instruction Some(CpuInstruction { instruction_type: Add(-36), cycles_left: 1 }) , Register 37
+(80) Current Instruction None , Register 1
+(81) Current Instruction None , Register 1
+(82) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 1
+(83) Current Instruction None , Register 2
+(84) Current Instruction Some(CpuInstruction { instruction_type: Add(7), cycles_left: 1 }) , Register 2
+(85) Current Instruction None , Register 9
+(86) Current Instruction None , Register 9
+(87) Current Instruction None , Register 9
+(88) Current Instruction None , Register 9
+(89) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 9
+(90) Current Instruction None , Register 11
+(91) Current Instruction Some(CpuInstruction { instruction_type: Add(6), cycles_left: 1 }) , Register 11
+(92) Current Instruction None , Register 17
+(93) Current Instruction None , Register 17
+(94) Current Instruction None , Register 17
+(95) Current Instruction None , Register 17
+(96) Current Instruction None , Register 17
+(97) Current Instruction None , Register 17
+(98) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 17
+(99) Current Instruction None , Register 18
+(100) Current Instruction None , Register 18
+(101) Current Instruction None , Register 18
+(102) Current Instruction Some(CpuInstruction { instruction_type: Add(7), cycles_left: 1 }) , Register 18
+(103) Current Instruction None , Register 25
+(104) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 25
+(105) Current Instruction None , Register 26
+(106) Current Instruction None , Register 26
+(107) Current Instruction Some(CpuInstruction { instruction_type: Add(-13), cycles_left: 1 }) , Register 26
+(108) Current Instruction None , Register 13
+(109) Current Instruction Some(CpuInstruction { instruction_type: Add(13), cycles_left: 1 }) , Register 13
+(110) Current Instruction None , Register 26
+(111) Current Instruction Some(CpuInstruction { instruction_type: Add(7), cycles_left: 1 }) , Register 26
+(112) Current Instruction None , Register 33
+(113) Current Instruction None , Register 33
+(114) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 33
+(115) Current Instruction None , Register 34
+(116) Current Instruction Some(CpuInstruction { instruction_type: Add(-33), cycles_left: 1 }) , Register 34
+(117) Current Instruction None , Register 1
+(118) Current Instruction None , Register 1
+(119) Current Instruction None , Register 1
+(120) Current Instruction None , Register 1
+(121) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 1
+(122) Current Instruction None , Register 3
+(123) Current Instruction None , Register 3
+(124) Current Instruction None , Register 3
+(125) Current Instruction None , Register 3
+(126) Current Instruction Some(CpuInstruction { instruction_type: Add(8), cycles_left: 1 }) , Register 3
+(127) Current Instruction None , Register 11
+(128) Current Instruction None , Register 11
+(129) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 11
+(130) Current Instruction None , Register 10
+(131) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 10
+(132) Current Instruction None , Register 12
+(133) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 12
+(134) Current Instruction None , Register 13
+(135) Current Instruction None , Register 13
+(136) Current Instruction Some(CpuInstruction { instruction_type: Add(17), cycles_left: 1 }) , Register 13
+(137) Current Instruction None , Register 30
+(138) Current Instruction Some(CpuInstruction { instruction_type: Add(-9), cycles_left: 1 }) , Register 30
+(139) Current Instruction None , Register 21
+(140) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 21
+(141) Current Instruction None , Register 22
+(142) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 22
+(143) Current Instruction None , Register 23
+(144) Current Instruction Some(CpuInstruction { instruction_type: Add(-3), cycles_left: 1 }) , Register 23
+(145) Current Instruction None , Register 20
+(146) Current Instruction Some(CpuInstruction { instruction_type: Add(11), cycles_left: 1 }) , Register 20
+(147) Current Instruction None , Register 31
+(148) Current Instruction None , Register 31
+(149) Current Instruction None , Register 31
+(150) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 31
+(151) Current Instruction None , Register 32
+(152) Current Instruction None , Register 32
+(153) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 32
+(154) Current Instruction None , Register 33
+(155) Current Instruction None , Register 33
+(156) Current Instruction None , Register 33
+(157) Current Instruction Some(CpuInstruction { instruction_type: Add(-13), cycles_left: 1 }) , Register 33
+(158) Current Instruction None , Register 20
+(159) Current Instruction Some(CpuInstruction { instruction_type: Add(-19), cycles_left: 1 }) , Register 20
+(160) Current Instruction None , Register 1
+(161) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 1
+(162) Current Instruction None , Register 2
+(163) Current Instruction Some(CpuInstruction { instruction_type: Add(3), cycles_left: 1 }) , Register 2
+(164) Current Instruction None , Register 5
+(165) Current Instruction Some(CpuInstruction { instruction_type: Add(26), cycles_left: 1 }) , Register 5
+(166) Current Instruction None , Register 31
+(167) Current Instruction Some(CpuInstruction { instruction_type: Add(-30), cycles_left: 1 }) , Register 31
+(168) Current Instruction None , Register 1
+(169) Current Instruction Some(CpuInstruction { instruction_type: Add(12), cycles_left: 1 }) , Register 1
+(170) Current Instruction None , Register 13
+(171) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 13
+(172) Current Instruction None , Register 12
+(173) Current Instruction Some(CpuInstruction { instruction_type: Add(3), cycles_left: 1 }) , Register 12
+(174) Current Instruction None , Register 15
+(175) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 15
+(176) Current Instruction None , Register 16
+(177) Current Instruction None , Register 16
+(178) Current Instruction None , Register 16
+(179) Current Instruction None , Register 16
+(180) Current Instruction Some(CpuInstruction { instruction_type: Add(-9), cycles_left: 1 }) , Register 16
+(181) Current Instruction None , Register 7
+(182) Current Instruction Some(CpuInstruction { instruction_type: Add(18), cycles_left: 1 }) , Register 7
+(183) Current Instruction None , Register 25
+(184) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 25
+(185) Current Instruction None , Register 26
+(186) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 26
+(187) Current Instruction None , Register 28
+(188) Current Instruction None , Register 28
+(189) Current Instruction None , Register 28
+(190) Current Instruction Some(CpuInstruction { instruction_type: Add(9), cycles_left: 1 }) , Register 28
+(191) Current Instruction None , Register 37
+(192) Current Instruction None , Register 37
+(193) Current Instruction None , Register 37
+(194) Current Instruction None , Register 37
+(195) Current Instruction Some(CpuInstruction { instruction_type: Add(-1), cycles_left: 1 }) , Register 37
+(196) Current Instruction None , Register 36
+(197) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 36
+(198) Current Instruction None , Register 38
+(199) Current Instruction Some(CpuInstruction { instruction_type: Add(-37), cycles_left: 1 }) , Register 38
+(200) Current Instruction None , Register 1
+(201) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 1
+(202) Current Instruction None , Register 2
+(203) Current Instruction Some(CpuInstruction { instruction_type: Add(3), cycles_left: 1 }) , Register 2
+(204) Current Instruction None , Register 5
+(205) Current Instruction None , Register 5
+(206) Current Instruction Some(CpuInstruction { instruction_type: Add(15), cycles_left: 1 }) , Register 5
+(207) Current Instruction None , Register 20
+(208) Current Instruction Some(CpuInstruction { instruction_type: Add(-21), cycles_left: 1 }) , Register 20
+(209) Current Instruction None , Register -1
+(210) Current Instruction Some(CpuInstruction { instruction_type: Add(22), cycles_left: 1 }) , Register -1
+(211) Current Instruction None , Register 21
+(212) Current Instruction Some(CpuInstruction { instruction_type: Add(-6), cycles_left: 1 }) , Register 21
+(213) Current Instruction None , Register 15
+(214) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 15
+(215) Current Instruction None , Register 16
+(216) Current Instruction None , Register 16
+(217) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 16
+(218) Current Instruction None , Register 18
+(219) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 18
+(220) Current Instruction None , Register 19
+(221) Current Instruction None , Register 19
+(222) Current Instruction Some(CpuInstruction { instruction_type: Add(-10), cycles_left: 1 }) , Register 19
+(223) Current Instruction None , Register 9
+(224) Current Instruction None , Register 9
+(225) Current Instruction None , Register 9
+(226) Current Instruction Some(CpuInstruction { instruction_type: Add(20), cycles_left: 1 }) , Register 9
+(227) Current Instruction None , Register 29
+(228) Current Instruction Some(CpuInstruction { instruction_type: Add(1), cycles_left: 1 }) , Register 29
+(229) Current Instruction None , Register 30
+(230) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 30
+(231) Current Instruction None , Register 32
+(232) Current Instruction Some(CpuInstruction { instruction_type: Add(2), cycles_left: 1 }) , Register 32
+(233) Current Instruction None , Register 34
+(234) Current Instruction Some(CpuInstruction { instruction_type: Add(-6), cycles_left: 1 }) , Register 34
+(235) Current Instruction None , Register 28
+(236) Current Instruction Some(CpuInstruction { instruction_type: Add(-11), cycles_left: 1 }) , Register 28
+(237) Current Instruction None , Register 17
+(238) Current Instruction None , Register 17
+(239) Current Instruction None , Register 17
+(240) Current Instruction None , Register 17
