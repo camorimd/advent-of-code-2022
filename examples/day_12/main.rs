@@ -1,19 +1,17 @@
-use std::{fs, io::{Read, Write}, collections::{HashMap}, cmp::Reverse};
+use std::{fs, io::{Read, Write}, collections::{HashMap}, cmp::Reverse, thread::JoinHandle};
 
 use crossterm::{QueueableCommand, cursor, style::{self}, terminal};
 use priority_queue::PriorityQueue;
+use tokio::task;
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 struct Node {
     x: u64,
     y: u64,
-    height: u64,
-    f: i64,
-    g: i64,
-    h: i64
+    height: u64
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 struct HeightMap  {
     height: u64,
     width: u64,
@@ -30,17 +28,11 @@ impl HeightMap {
                 let y = idx as u64 / width;
                 let x = idx as u64 % width;
                 let height = char as u64;
-                let f = 0;
-                let g = 0;
-                let h = 0;
 
                 Node {
                     x,
                     y,
-                    height,
-                    f,
-                    g,
-                    h
+                    height
                 }
             })
             .collect();
@@ -99,11 +91,13 @@ impl HeightMap {
 
                 if current_height as u8 as char == 'E' { current_height = 'z' as u64}
                 if current_height as u8 as char == 'S' { current_height = 'a' as u64}
-                if candidate_height as u8 as char == 'S' { candidate_height = 'a' as u64}
+                if candidate_height as u8 as char == 'E' { candidate_height = 'z' as u64}
                 if candidate_height as u8 as char == 'S' { candidate_height = 'a' as u64}
                 
                 
-                if candidate_height.abs_diff(current_height) <= 1 {
+                if candidate_height.abs_diff(current_height) <= 1 
+                || candidate_height < current_height
+                {
                     result.push(candidate);
                 }
             }
@@ -121,89 +115,112 @@ impl HeightMap {
         (start_node.x.abs_diff(end_node.x) + start_node.y.abs_diff(end_node.y)) as i32
     }
 
+    fn get_height(&self, char: char) -> Vec<usize>{
+        self.inner_vec
+            .iter()
+                .filter(|f| f.height as u8 as char == char)
+                .map(|c| self.get_node_idx(c))
+            .collect()
+    }
+
 }
 
-
-fn main() {
-    let mut stdout = std::io::stdout();
+#[tokio::main]
+async fn main(){
+    // let mut stdout = std::io::stdout();
     if let Ok(mut file) = fs::File::open("examples/day_12/input_long") {
         let mut contents = String::new();
         if file.read_to_string(&mut contents).is_ok() { 
             let map = HeightMap::new(contents);
+            let mut starting_points = map.get_height('a');
+            starting_points.push(map.start_node_idx());
 
-            // let manhattan
+            let mut handles = vec![];
 
-            let mut frontier: PriorityQueue<usize, Reverse<i32>> = PriorityQueue::new();
-            let mut came_from = HashMap::new();
-            let mut cost_so_far = HashMap::new();
-            
+            for starting_point in starting_points {
+                let map = map.clone();
+                handles.push(
+                    task::spawn(async move {
+                        // let manhattan            
+                        let mut frontier: PriorityQueue<usize, Reverse<i32>> = PriorityQueue::new();
+                        let mut came_from = HashMap::new();
+                        let mut cost_so_far = HashMap::new();
 
+                        //Wel... This will take a looong way
+                        frontier.push(starting_point, Reverse(0));
+                        came_from.insert(starting_point, None);
+                        cost_so_far.insert(starting_point, 0);
+                        
+                        while let Some((current, _)) = frontier.pop() {
 
-            frontier.push(map.start_node_idx(), Reverse(0));
-            came_from.insert(map.start_node_idx(), None);
-            cost_so_far.insert(map.start_node_idx(), 0);
-            
-            while let Some((current, _)) = frontier.pop() {
+                            if current == map.end_node_idx() {
+                                break;
+                            }
 
-                if current == map.end_node_idx() {
-                    break;
-                }
+                            for child in map.get_neighours(current) {
+                                let child_idx = map.get_node_idx(child);
 
-                for child in map.get_neighours(current) {
-                    let child_idx = map.get_node_idx(child);
+                                let new_cost = cost_so_far[&current] + 1; //
 
-                    let new_cost = cost_so_far[&current] + 1; //
+                                if !cost_so_far.contains_key(&child_idx) || new_cost < cost_so_far[&child_idx] {
+                                    cost_so_far.insert(child_idx, new_cost);
+                                    let priority = new_cost + map.distance(child_idx, map.end_node_idx());
+                                    frontier.push(child_idx, Reverse(priority));
+                                    came_from.insert(child_idx, Some(current));
+                                }
+                            }
+                        }
 
-                    if !cost_so_far.contains_key(&child_idx) || new_cost < cost_so_far[&child_idx] {
-                        cost_so_far.insert(child_idx, new_cost);
-                        let priority = new_cost + map.distance(child_idx, map.end_node_idx());
-                        frontier.push(child_idx, Reverse(priority));
-                        came_from.insert(child_idx, Some(current));
-                    }
-                }
+                        let mut path = vec![];
+                        let mut current = map.end_node_idx();
+                        let mut has_path = true;
+                        while current != starting_point {
+                            path.push(current);
+                            if came_from.get(&current).is_some() {
+                                came_from.get(&current).unwrap().unwrap();
+                            }else{
+                                has_path = false;
+                                break;
+                            }
+                            current = came_from.get(&current).unwrap().unwrap();
+                        }
+                        path.push(starting_point);
+
+                        if has_path {
+                            // stdout.queue(terminal::Clear(terminal::ClearType::Purge)).unwrap();
+                            // for y in 0..map.height {
+                            //     for x in 0..map.width {
+                            //         stdout.queue(cursor::MoveTo(x as u16,y as u16)).unwrap();
+                            //         let idx = (x + y * map.width) as usize;
+                            //         if idx == starting_point {
+                            //             stdout.queue(style::Print("S")).unwrap();
+                            //         }else if idx == map.end_node_idx() {
+                            //             stdout.queue(style::Print("E")).unwrap();
+                            //         }else if path.contains(&idx) {
+                            //             stdout.queue(style::Print("X")).unwrap();
+                            //         }else{
+                            //             stdout.queue(style::Print(".")).unwrap();
+                            //         }
+                            //     }
+                            // }
+                            // stdout.flush().unwrap();            
+                            
+                            path.reverse();
+                            // println!("{:?}", path.len()-1);
+                            Some(path.len() - 1)
+                            // std::io::stdin().read_line(&mut String::new()).unwrap();
+                        }else{
+                            None
+                        }
+                    })
+                );
             }
 
-
-            // let vec_reached = came_from.iter().collect::<Vec<(&usize, &Option<usize>)>>();
-            // vec_reached.sort();
-            // println!("{vec_reached:?}");
-            // println!("{}", vec_reached.len());
-
-            let mut path = vec![];
-            let mut current = map.end_node_idx();
-            while current != map.start_node_idx() {
-                path.push(current);
-                if came_from.get(&current).is_some() {
-                    came_from.get(&current).unwrap().unwrap();
-                }else{
-                    // panic!("{current} not found in came_from but seems to be a parent");
-                    break;
-                }
-                current = came_from.get(&current).unwrap().unwrap();
+            let mut steps = vec![];
+            for handle in handles {
+                steps.push(handle.await.unwrap());
             }
-            path.push(map.start_node_idx());
-
-            stdout.queue(terminal::Clear(terminal::ClearType::Purge)).unwrap();
-            for y in 0..map.height {
-                for x in 0..map.width {
-                    stdout.queue(cursor::MoveTo(x as u16,y as u16)).unwrap();
-                    let idx = (x + y * map.width) as usize;
-                    if idx == map.start_node_idx() {
-                        stdout.queue(style::Print("S")).unwrap();
-                    }else if idx == map.end_node_idx() {
-                        stdout.queue(style::Print("E")).unwrap();
-                    }else if came_from.get(&idx).is_none() {
-                        // stdout.queue(style::Print(cost_so_far[&idx])).unwrap();
-                        stdout.queue(style::Print("X")).unwrap();
-                    }else{
-                        stdout.queue(style::Print(".")).unwrap();
-                    }
-                }
-            }
-            stdout.flush().unwrap();            
-            
-            path.reverse();
-            println!("\n{:?}", path.len());
+            println!("{:?}", steps.iter().filter(|f| f.is_some()).map(|f| f.unwrap()).rfold(usize::MAX, |acc, f| if f < acc {f}else{acc} ));
         }
     }
 }
