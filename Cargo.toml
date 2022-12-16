@@ -8,3 +8,5 @@ license-file = "LICENSE"
 
 [dependencies]
 array_tool = "1.0.3"
+priority-queue = "1.3.0"
+crossterm = "0.25.0"
