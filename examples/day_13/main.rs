@@ -85,9 +85,37 @@ impl FromStr for Field {
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         if s.chars().next() == Some('[') {
             let mut result = vec![];
-
-            for item in s[1..s.len()-1].split(',') {
-                result.push(Self::from_str(item).unwrap())
+            let mut chars = s[1..s.len()-1].chars();
+            let mut item = String::new();
+            while let Some(char) =  chars.next(){
+                let mut count = 0;
+                if char == '[' {
+                    count += 1;
+                    item.push(char);
+                    while let Some(inner_char) = chars.next() {
+                        if inner_char == '[' { count += 1;}
+                        if inner_char == ']' { count -= 1;}
+                        if inner_char == ']' && count == 0{
+                            item.push(inner_char);
+                            result.push(Self::from_str(&item).unwrap());
+                            item.clear();
+                            break;
+                        }else{
+                            
+                            item.push(inner_char);
+                        }
+                    }
+                }else if char == ',' {
+                    if !item.is_empty() {
+                        result.push(Self::from_str(&item).unwrap());
+                        item.clear();
+                    }
+                }else{
+                    item.push(char);
+                }
+            }
+            if !item.is_empty() {
+                result.push(Self::from_str(&item).unwrap());
             }
             Ok(Self::Vec(result))
         }else{
@@ -96,27 +124,63 @@ impl FromStr for Field {
     }
 }
 
+#[derive(Debug)]
 struct Packet {
     left: Field,
     right: Field,
 }
 
+impl Packet {
+    fn is_correct(&self) -> bool {
+        // println!("{}", self.left < self.right);
+        // println!("\t{:?}", self.left);
+        // println!("\t{:?}", self.right);
+        self.left < self.right
+    }
+}
 
 fn main(){
-    if let Ok(mut file) = fs::File::open("examples/day_13/input_short") {
+    if let Ok(mut file) = fs::File::open("examples/day_13/input_long") {
         let mut contents = String::new();
         if file.read_to_string(&mut contents).is_ok() { 
             let mut packets: Vec<Packet> = Vec::new();
+
+            let all = contents.split("\r\n").filter_map(|f| if !f.is_empty() { Some(f) }else{None}).collect::<Vec<&str>>();
+            let left = all.iter().step_by(2);
+            let right = all.iter().skip(1).step_by(2);
+
+
             
-            for line in  contents.split("\r\n").filter_map(|f| if !f.is_empty() { Some(f) }else{None}).collect::<Vec<&str>>().windows(2)
+            for line in  left.zip(right)
             {
-                let left = Field::from_str(&line[0]).unwrap();
-                let right = Field::from_str(&line[1]).unwrap();
+                let left = Field::from_str(line.0).unwrap();
+                let right = Field::from_str(line.1).unwrap();
                 packets.push(Packet{left,right});
             }            
 
-            let sum = packets.iter().enumerate().filter(|(idx, p)| p.left < p.right ).map(|(idx, p)| idx + 1).sum::<usize>();
-            println!("Final sum {sum}");
+            let sum = packets.iter().enumerate().filter(|(_, p)| p.is_correct()).map(|(idx, p)| idx + 1).sum::<usize>();
+            println!("Final sum {sum:?}");
+            let mut fields = packets.iter().map(|f| vec![f.left.clone(), f.right.clone()]).flatten().collect::<Vec<Field>>();
+            let first_code = Field::Vec(vec![Field::Vec(vec![Field::Integer(2)])]);
+            let second_code = Field::Vec(vec![Field::Vec(vec![Field::Integer(6)])]);
+            fields.append(&mut vec![
+                Field::Vec(vec![Field::Vec(vec![Field::Integer(2)])]),
+                Field::Vec(vec![Field::Vec(vec![Field::Integer(6)])]),
+            ]);
+            fields.sort_by(|a, b| a.partial_cmp(b).unwrap());
+            for field in &fields {
+                println!("{field:?}");
+            }
+
+            let mut total = 1;
+            for idx in fields.iter().enumerate().filter(|(_, f)| *f.clone() == first_code || *f.clone() == second_code).map(|(idx,_)| idx + 1){
+                total *= idx;
+            }
+
+            println!("{total}");
+
+            
+            
             
         }
     }
@@ -175,5 +239,12 @@ mod test {
                     Field::Integer(4),Field::Integer(4),Field::Integer(4)])
         );
 
+    }
+
+    #[test]
+    fn test_pairs(){
+        assert!(Field::from_str("[1,1,3,1,1]").unwrap() < Field::from_str("[1,1,5,1,1]").unwrap());
+        assert!(Field::from_str("[[1],[2,3,4]]").unwrap() < Field::from_str("[[1],4]").unwrap());
+        assert!((Field::from_str("[9]").unwrap() < Field::from_str("[[8,7,6]]").unwrap()) == false);
     }
 }
